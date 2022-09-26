@@ -892,7 +892,7 @@ kbd {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background: url("/images/bg.png") no-repeat center/cover;
+  background: url("https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202209261905420.png") no-repeat center/cover;
 }
 .header-banner::before {
   content: '';
@@ -1250,6 +1250,15 @@ kbd {
   white-space: normal;
   word-wrap: break-word;
   word-break: break-word;
+}
+.sidebar-toc .toc-child {
+  display: none;
+}
+.sidebar-toc .active > .toc-child {
+  display: block;
+}
+.sidebar-toc .current > .toc-child {
+  display: block;
 }
 .sidebar-toc .active > a,
 .sidebar-toc .current > a {
