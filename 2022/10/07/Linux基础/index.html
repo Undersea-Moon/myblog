@@ -1,0 +1,974 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="第一章 Linux概述       Linux是一种自由和开放源码的类UNIX 操作系统，存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux 是在 1991 年由林纳斯·托瓦兹在赫尔辛基大学上学时创立的，主要受到 Minix 和 Unix 思想的启发。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、台式计算机。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础">
+<meta property="og:url" content="https://www.yanggroup.cn/2022/10/07/Linux%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="YangGroup">
+<meta property="og:description" content="第一章 Linux概述       Linux是一种自由和开放源码的类UNIX 操作系统，存在着许多不同的Linux版本，但它们都使用了Linux内核。Linux 是在 1991 年由林纳斯·托瓦兹在赫尔辛基大学上学时创立的，主要受到 Minix 和 Unix 思想的启发。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、台式计算机。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028263.png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi9DRjc4Mjc1NkIyQkQ0MkYxQTU4QTUwOUU0RkEzQzg3QQ">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi84MTUxMzE4Njk4MjM0RTg0QTk5NTJGRjI3RTczQUM0NA">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi9EOUQ2N0Y2OUYzOUI0N0YyQUNCRjhDMjkzODNFMzNEQw">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028114.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028404.png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi85QTcxMzI4OTAzMTg0Mzc0QTg0RTAwOTdENjc3NjEwNQ">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi8zRDJEODg1QjFEMjk0NkExOEJCMzc4NDAwMkE0OTNBOQ">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028261.png">
+<meta property="og:image" content="https://www.yanggroup.cn/Linux%E5%9F%BA%E7%A1%80%5Cimg%5Cimage-20210308153339407.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028226.png">
+<meta property="og:image" content="https://www.yanggroup.cn/Linux%E5%9F%BA%E7%A1%80%5Cimg%5Cimage-20210308153432834.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028537.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029378.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029516.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029093.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029335.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029538.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029373.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029467.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029034.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030547.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030542.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030088.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030220.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030911.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030522.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030714.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030066.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030873.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031927.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031751.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031717.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031267.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031642.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031980.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031145.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031757.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031606.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031130.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031958.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032837.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032027.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032196.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032337.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032913.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032469.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032285.png">
+<meta property="og:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032448.png">
+<meta property="article:published_time" content="2022-10-07T02:52:53.799Z">
+<meta property="article:modified_time" content="2022-10-07T03:05:37.512Z">
+<meta property="article:author" content="小宇">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028263.png"><title>Linux基础 | YangGroup</title><link ref="canonical" href="https://www.yanggroup.cn/2022/10/07/Linux%E5%9F%BA%E7%A1%80/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">YangGroup</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Linux基础</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-10-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-10-07</span></span></div></header><div class="post-body">
+        <h2 id="第一章-Linux概述"   >
+          <a href="#第一章-Linux概述" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一章-Linux概述" class="headerlink" title="第一章 Linux概述"></a>第一章 Linux概述</h2>
+      <p>Linux是一种自由和开放源码的类UNIX 操作系统，存在着许多不同的Linux版本，但它们都使用了Linux内核。<br>Linux 是在 1991 年由林纳斯·托瓦兹在赫尔辛基大学上学时创立的，主要受到 Minix 和 Unix 思想的启发。<br>Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、台式计算机。<br> <span id="more"></span></p>
+
+        <h3 id="1-1-Linux的特点"   >
+          <a href="#1-1-Linux的特点" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-1-Linux的特点" class="headerlink" title="1.1 Linux的特点"></a>1.1 Linux的特点</h3>
+      <ul>
+<li>多用户</li>
+<li>多任务</li>
+<li>丰富的网络功能</li>
+<li>可靠的系统安全</li>
+<li>良好的可移植性</li>
+<li>具有标准兼容性</li>
+<li>良好的用户界面</li>
+<li>出色的速度性能</li>
+<li>开源</li>
+</ul>
+
+        <h3 id="1-2-Linux和Window的区别"   >
+          <a href="#1-2-Linux和Window的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-2-Linux和Window的区别" class="headerlink" title="1.2 Linux和Window的区别"></a>1.2 Linux和Window的区别</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th align="left">比较</th>
+<th align="left">Windows</th>
+<th align="left">Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">界面</td>
+<td align="left">界面统一，外壳程序固定所有 Windows 程序菜单几乎一致，快捷键也几乎相同</td>
+<td align="left">图形界面风格依发布版不同而不同，可能互不兼容。GNU&#x2F;Linux 的终端机是从 UNIX 传承下来，基本命令和操作方法也几乎一致。</td>
+</tr>
+<tr>
+<td align="left">驱动程序</td>
+<td align="left">驱动程序丰富，版本更新频繁。默认安装程序里面一般包含有该版本发布时流行的硬件驱动程序，之后所出的新硬件驱动依赖于硬件厂商提供。对于一些老硬件，如果没有了原配的驱动有时很难支持。另外，有时硬件厂商未提供所需版本的 Windows 下的驱动，也会比较头痛。</td>
+<td align="left">由志愿者开发，由 Linux 核心开发小组发布，很多硬件厂商基于版权考虑并未提供驱动程序，尽管多数无需手动安装，但是涉及安装则相对复杂，使得新用户面对驱动程序问题（是否存在和安装方法）会一筹莫展。但是在开源开发模式下，许多老硬件尽管在Windows下很难支持的也容易找到驱动。HP、Intel、AMD 等硬件厂商逐步不同程度支持开源驱动，问题正在得到缓解。</td>
+</tr>
+<tr>
+<td align="left">使用</td>
+<td align="left">使用比较简单，容易入门。图形化界面对没有计算机背景知识的用户使用十分有利。</td>
+<td align="left">图形界面使用简单，容易入门。文字界面，需要学习才能掌握。</td>
+</tr>
+<tr>
+<td align="left">学习</td>
+<td align="left">系统构造复杂、变化频繁，且知识、技能淘汰快，深入学习困难。</td>
+<td align="left">系统构造简单、稳定，且知识、技能传承性好，深入学习相对容易。</td>
+</tr>
+<tr>
+<td align="left">软件</td>
+<td align="left">每一种特定功能可能都需要商业软件的支持，需要购买相应的授权。</td>
+<td align="left">大部分软件都可以自由获取，同样功能的软件选择较少。</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第二章-Linux安装"   >
+          <a href="#第二章-Linux安装" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二章-Linux安装" class="headerlink" title="第二章 Linux安装"></a>第二章 Linux安装</h2>
+      
+        <h3 id="2-1-了解什么是虚拟化"   >
+          <a href="#2-1-了解什么是虚拟化" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-1-了解什么是虚拟化" class="headerlink" title="2.1 了解什么是虚拟化"></a>2.1 了解什么是虚拟化</h3>
+      <p>​      在计算机中，虚拟化（英语：Virtualization）是一种资源管理技术，是将计算机的各种实体资源，如服务器、网络、内存及存储等，予以抽象、转换后呈现出来，打破实体结构间的不可切割的障碍，使用户可以比原本的组态更好的方式来应用这些资源。这些资源的新虚拟部分是不受现有资源的架设方式，地域或物理组态所限制。一般所指的虚拟化资源包括计算能力和资料存储。</p>
+
+        <h3 id="2-2-windows安装VMware"   >
+          <a href="#2-2-windows安装VMware" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-2-windows安装VMware" class="headerlink" title="2.2 windows安装VMware"></a>2.2 windows安装VMware</h3>
+      <ol>
+<li><p>官网下载VMware 15.X pro  </p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.vmware.com/cn.html" >https://www.vmware.com/cn.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</li>
+<li><p>在BIOS中设置当前电脑支持虚拟化(部分机器需要设置)</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028263.png" alt="image-20210308143959794"></p>
+</li>
+<li><p>安装VMware</p>
+<p>没什么好说的，一路下一步就行，需要注意不要放入中文目录中。</p>
+</li>
+</ol>
+
+        <h3 id="2-3-掌握VMware网络配置"   >
+          <a href="#2-3-掌握VMware网络配置" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-3-掌握VMware网络配置" class="headerlink" title="2.3 掌握VMware网络配置"></a>2.3 掌握VMware网络配置</h3>
+      <p>​	<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi9DRjc4Mjc1NkIyQkQ0MkYxQTU4QTUwOUU0RkEzQzg3QQ" alt="img"></p>
+<ol>
+<li><p><strong>桥接模式</strong></p>
+<p>什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结构如下图所示：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi84MTUxMzE4Njk4MjM0RTg0QTk5NTJGRjI3RTczQUM0NA" alt="img"></p>
+</li>
+<li><p><strong>NAT模式</strong></p>
+<p>刚刚我们说到，如果你的网络ip资源紧缺，但是你又希望你的虚拟机能够联网，这时候NAT模式是最好的选择。NAT模式借助虚拟NAT设备和虚拟DHCP服务器，使得虚拟机可以联网。其网络结构如下图所示：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi9EOUQ2N0Y2OUYzOUI0N0YyQUNCRjhDMjkzODNFMzNEQw" alt="img"></p>
+<p>在NAT模式中，主机网卡直接与虚拟NAT设备相连，然后虚拟NAT设备与虚拟DHCP服务器一起连接在虚拟交换机VMnet8上，这样就实现了虚拟机联网。那么我们会觉得很奇怪，为什么需要虚拟网卡VMware Network Adapter VMnet8呢？原来我们的VMware Network Adapter VMnet8虚拟网卡主要是为了实现主机与虚拟机之间的通信。在之后的设置步骤中，我们可以加以验证。</p>
+<p>如何配置NAT网络连接</p>
+<p>1.打开VM设置虚拟机网络</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028114.png" alt="image-20210309151333891"></p>
+<p>2.在centos中配置地址信息</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028404.png" alt="image-20210309151540533"></p>
+<p>3.关闭防火墙</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></div></figure>
+
+<p>4.刷新网络</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></div></figure>
+</li>
+<li><p>仅主机模式</p>
+<p>Host-Only模式其实就是NAT模式去除了虚拟NAT设备，然后使用VMware Network Adapter VMnet1虚拟网卡连接VMnet1虚拟交换机来与虚拟机通信的，Host-Only模式将虚拟机与外网隔开，使得虚拟机成为一个独立的系统，只与主机相互通讯。其网络结构如下图所示：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi85QTcxMzI4OTAzMTg0Mzc0QTg0RTAwOTdENjc3NjEwNQ" alt="img"></p>
+<p>通过上图，我们可以发现，如果要使得虚拟机能联网，我们可以将主机网卡共享给VMware Network Adapter VMnet1网卡，从而达到虚拟机联网的目的。</p>
+<p>注意：在主机上对应的有VMware Network Adapter VMnet1和VMware Network Adapter VMnet8两块虚拟网卡，它们分别作用于仅主机模式与NAT模式下。在“网络连接”中我们可以看到这两块虚拟网卡，如果将这两块卸载了，可以在vmware的“编辑”下的“虚拟网络编辑器”中点击“还原默认设置”，可重新将虚拟网卡还原。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9ub3RlLnlvdWRhby5jb20veXdzL3B1YmxpYy9yZXNvdXJjZS8yMzY4OTY5OTdiNmZmYmFhOGUwZDkyZWFjZDEzYWJiZi8zRDJEODg1QjFEMjk0NkExOEJCMzc4NDAwMkE0OTNBOQ" alt="img"></p>
+</li>
+</ol>
+
+        <h3 id="2-4-掌握VMware安装CentOS7"   >
+          <a href="#2-4-掌握VMware安装CentOS7" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-4-掌握VMware安装CentOS7" class="headerlink" title="2.4 掌握VMware安装CentOS7"></a>2.4 掌握VMware安装CentOS7</h3>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028261.png" alt="image-20210308153323253"></p>
+<p><img src="/Linux%E5%9F%BA%E7%A1%80%5Cimg%5Cimage-20210308153339407.png" alt="image-20210308153339407"></p>
+<p>   <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028226.png" alt="image-20210308153410502"></p>
+<p>​	<img src="/Linux%E5%9F%BA%E7%A1%80%5Cimg%5Cimage-20210308153432834.png" alt="image-20210308153432834"></p>
+<p>  <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071028537.png" alt="image-20210308153448393"></p>
+<p> <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029378.png" alt="image-20210308153504615"></p>
+<p>  <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029516.png" alt="image-20210308153516884"></p>
+<p> <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029093.png" alt="image-20210308153530578"></p>
+<p>  <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029335.png" alt="image-20210308153603441"></p>
+<p> <img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029538.png" alt="image-20210308153625935"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029373.png" alt="image-20210308153724198"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029467.png" alt="image-20210308153754012"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071029034.png" alt="image-20210308153818620"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030547.png" alt="image-20210308153841192"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030542.png" alt="image-20210308153853087"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030088.png" alt="image-20210308153911937"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030220.png" alt="image-20210308153926064"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030911.png" alt="image-20210308153937160"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030522.png" alt="image-20210308154000584"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030714.png" alt="image-20210308154007295"></p>
+
+        <h3 id="2-5-设置Centos7的下载源-可不做"   >
+          <a href="#2-5-设置Centos7的下载源-可不做" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-5-设置Centos7的下载源-可不做" class="headerlink" title="2.5 设置Centos7的下载源(可不做)"></a>2.5 设置Centos7的下载源(可不做)</h3>
+      
+        <h4 id="2-5-1-配置清华大学数据源"   >
+          <a href="#2-5-1-配置清华大学数据源" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-5-1-配置清华大学数据源" class="headerlink" title="2.5.1 配置清华大学数据源"></a>2.5.1 配置清华大学数据源</h4>
+      <p>​		<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://mirrors.cnnic.cn/" >https://mirrors.cnnic.cn/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="2-5-2-配置阿里云数据源"   >
+          <a href="#2-5-2-配置阿里云数据源" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-5-2-配置阿里云数据源" class="headerlink" title="2.5.2 配置阿里云数据源"></a>2.5.2 配置阿里云数据源</h4>
+      <p>​		<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/" >https://developer.aliyun.com/mirror/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="2-6-安装SSH工具-XShell-6"   >
+          <a href="#2-6-安装SSH工具-XShell-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-6-安装SSH工具-XShell-6" class="headerlink" title="2.6 安装SSH工具 XShell 6"></a>2.6 安装SSH工具 XShell 6</h3>
+      
+        <h4 id="2-6-1-安装XShell-6"   >
+          <a href="#2-6-1-安装XShell-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-6-1-安装XShell-6" class="headerlink" title="2.6.1 安装XShell 6"></a>2.6.1 安装XShell 6</h4>
+      
+        <h4 id="2-6-2-连接远程Linux"   >
+          <a href="#2-6-2-连接远程Linux" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-6-2-连接远程Linux" class="headerlink" title="2.6.2 连接远程Linux"></a>2.6.2 连接远程Linux<img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030066.png" alt="image-20210309160509030"></h4>
+      
+        <h2 id="第三章-Linux的目录结构"   >
+          <a href="#第三章-Linux的目录结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三章-Linux的目录结构" class="headerlink" title="第三章 Linux的目录结构"></a>第三章 Linux的目录结构</h2>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071030873.png" alt="image-20210312173641568"></p>
+
+        <h2 id="第四章-Linux常用命令"   >
+          <a href="#第四章-Linux常用命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四章-Linux常用命令" class="headerlink" title="第四章 Linux常用命令"></a>第四章 Linux常用命令</h2>
+      <pre><code>命令的使用格式：命令	-选项  参数
+如：			ls	 -a  	/root
+ls:对于目录,将列出该目录下所有的子目录与文件,对于文件,将列出文件名以及其他信息;
+-a:列出目录下的所有文件,包括以“.”的隐藏文件;
+/root:指定目录
+</code></pre>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031927.png" alt="image-20210309164226958"></p>
+
+        <h3 id="4-1-文件与目录操作"   >
+          <a href="#4-1-文件与目录操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-1-文件与目录操作" class="headerlink" title="4.1 文件与目录操作"></a>4.1 文件与目录操作</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cd &#x2F;home（cd ~）</td>
+<td>进入 ‘&#x2F;home’ 目录</td>
+</tr>
+<tr>
+<td>cd ..</td>
+<td>返回上一级目录</td>
+</tr>
+<tr>
+<td>cd ..&#x2F;..</td>
+<td>返回上两级目录</td>
+</tr>
+<tr>
+<td>cd -</td>
+<td>返回上次所在目录</td>
+</tr>
+<tr>
+<td>cp file1 file2</td>
+<td>将file1复制为file2</td>
+</tr>
+<tr>
+<td>cp -a dir1 dir2</td>
+<td>复制一个目录</td>
+</tr>
+<tr>
+<td>cp -a &#x2F;tmp&#x2F;dir1 .</td>
+<td>复制一个目录到当前工作目录（.代表当前目录）</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>查看目录中的文件</td>
+</tr>
+<tr>
+<td>ls -a</td>
+<td>显示隐藏文件</td>
+</tr>
+<tr>
+<td>ls -l</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td>ls -lrt</td>
+<td>按时间显示文件（l表示详细列表，r表示反向排序，t表示按时间排序）</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示工作路径</td>
+</tr>
+<tr>
+<td>mkdir dir1</td>
+<td>创建 ‘dir1’ 目录</td>
+</tr>
+<tr>
+<td>mkdir dir1 dir2</td>
+<td>同时创建两个目录</td>
+</tr>
+<tr>
+<td>mkdir -p &#x2F;tmp&#x2F;dir1&#x2F;dir2</td>
+<td>创建一个目录树</td>
+</tr>
+<tr>
+<td>touch aa</td>
+<td>创建一个文件</td>
+</tr>
+<tr>
+<td>mv dir1 dir2</td>
+<td>移动&#x2F;重命名一个目录；dir2存在是移动,dir2不存在是重命名；也可以对文件操作</td>
+</tr>
+<tr>
+<td>rm -f file1</td>
+<td>删除 ‘file1’文件（注意是文件）</td>
+</tr>
+<tr>
+<td>rm -rf dir1</td>
+<td>删除 ‘dir1’ 目录及其子目录内容</td>
+</tr>
+</tbody></table></div>
+<p>注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了方便大家的记忆，无论删除任何目录或文件，都直接使用 rm -rf 目录&#x2F;文件&#x2F;压缩包</p>
+
+        <h3 id="4-2-查看文件内容"   >
+          <a href="#4-2-查看文件内容" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-2-查看文件内容" class="headerlink" title="4.2 查看文件内容"></a>4.2 查看文件内容</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>cat file1</strong></td>
+<td><strong>从第一个字节开始正向查看文件的内容,如果内容比较多显示最后一屏</strong></td>
+</tr>
+<tr>
+<td>head -2 file1</td>
+<td>查看一个文件的前两行</td>
+</tr>
+<tr>
+<td><strong>more file1</strong></td>
+<td><strong>查看一个长文件的内容</strong></td>
+</tr>
+<tr>
+<td>tac file1</td>
+<td>从最后一行开始反向查看一个文件的内容</td>
+</tr>
+<tr>
+<td>tail -3 file1</td>
+<td>查看一个文件的最后三行</td>
+</tr>
+<tr>
+<td>wc</td>
+<td>统计文本的行数、字数、字符数<br/>-m 统计文本字符数<br/>-w 统计文本字数<br/>-l 统计文本行数</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="4-3-文本内容处理"   >
+          <a href="#4-3-文本内容处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-3-文本内容处理" class="headerlink" title="4.3 文本内容处理"></a>4.3 文本内容处理</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>grep str &#x2F;tmp&#x2F;test</td>
+<td>在文件 ‘&#x2F;tmp&#x2F;test’ 中查找 “str”</td>
+</tr>
+<tr>
+<td>grep ^str &#x2F;tmp&#x2F;test</td>
+<td>在文件 ‘&#x2F;tmp&#x2F;test’ 中查找以 “str” 开始的行</td>
+</tr>
+<tr>
+<td>grep [0-9] &#x2F;tmp&#x2F;test</td>
+<td>查找 ‘&#x2F;tmp&#x2F;test’ 文件中所有包含数字的行</td>
+</tr>
+<tr>
+<td>grep str -r &#x2F;tmp&#x2F;*</td>
+<td>在目录 ‘&#x2F;tmp’ 及其子目录中查找 “str”</td>
+</tr>
+<tr>
+<td>diff file1 file2</td>
+<td>找出两个文件的不同处</td>
+</tr>
+<tr>
+<td>sdiff file1 file2</td>
+<td>以对比的方式显示两个文件的不同</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="4-4-查询操作"   >
+          <a href="#4-4-查询操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-4-查询操作" class="headerlink" title="4.4 查询操作"></a>4.4 查询操作</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>find &#x2F; -name file1</td>
+<td>从 ‘&#x2F;’ 开始进入根文件系统查找文件和目录</td>
+</tr>
+<tr>
+<td>find &#x2F; -user user1</td>
+<td>查找属于用户 ‘user1’ 的文件和目录</td>
+</tr>
+<tr>
+<td>find &#x2F;home&#x2F;user1 -name *.bin</td>
+<td>在目录 ‘&#x2F; home&#x2F;user1’ 中查找以 ‘.bin’ 结尾的文件</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="4-5-压缩和解压缩"   >
+          <a href="#4-5-压缩和解压缩" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-5-压缩和解压缩" class="headerlink" title="4.5 压缩和解压缩"></a>4.5 压缩和解压缩</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tar -zcvf archive.tar.gz file1</td>
+<td>把file1打包成 archive.tar.gz</td>
+</tr>
+<tr>
+<td>tar -zcvf archive.tar.gz file1 dir1</td>
+<td>把 file1，dir1 打包成 archive.tar.gz</td>
+</tr>
+<tr>
+<td>tar -zxvf archive.tar.gz</td>
+<td>解压缩archive.tar.gz到当前文件夹中</td>
+</tr>
+<tr>
+<td>tar -zxvf archive.tar.gz -C &#x2F;dailyblue</td>
+<td>解压缩archive.tar.gz到dailyblue文件夹中  大写C</td>
+</tr>
+<tr>
+<td>tar -tf archive.tar.gz</td>
+<td>查看archive.tar.gz中的内容</td>
+</tr>
+</tbody></table></div>
+<p>注意：压缩和解压缩有多种形式来实现，没必要每个都记住，只需要使用上边命令就行</p>
+<p>格式：tar [选项] [压缩路径+压缩名称] [压缩的文件或者目录]<br>选项：-z格式为gzip格式、-j格式为bzip2格式、**-c压缩、-x解压缩**、-v显示所有过程、-t查看内容、-f指定压缩后的文件名称等</p>
+
+        <h3 id="4-6-网络相关"   >
+          <a href="#4-6-网络相关" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-6-网络相关" class="headerlink" title="4.6 网络相关"></a>4.6 网络相关</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ifconfig</td>
+<td>显示网卡的IP地址</td>
+</tr>
+<tr>
+<td>ip addr</td>
+<td>显示网卡的IP地址</td>
+</tr>
+<tr>
+<td>ifup eth0</td>
+<td>启用 ‘eth0’ 网络设备</td>
+</tr>
+<tr>
+<td>ifdown eth0</td>
+<td>禁用 ‘eth0’ 网络设备</td>
+</tr>
+<tr>
+<td>netstat</td>
+<td>显示各种网络相关信息，<br/>如网络连接,路由表,接口状态,masquerade 连接,多播成员等。</td>
+</tr>
+<tr>
+<td>netstat -a</td>
+<td>列出所有端口</td>
+</tr>
+<tr>
+<td>netstat -n</td>
+<td>以数字形式显示地址和端口号</td>
+</tr>
+<tr>
+<td>netstat -p</td>
+<td>proto 显示 proto 指定的协议的连接；<br/>proto 可以是下列协议之一: TCP、UDP、TCPv6 或 UDPv6</td>
+</tr>
+<tr>
+<td>netstat -anp</td>
+<td>组合命令,包含上边效果</td>
+</tr>
+<tr>
+<td>service network restart</td>
+<td>重启网络</td>
+</tr>
+<tr>
+<td>systemctl status firewalld.service</td>
+<td>查看防火墙信息</td>
+</tr>
+<tr>
+<td>systemctl stop firewalld.service</td>
+<td>关闭防火墙</td>
+</tr>
+<tr>
+<td>systemctl start firewalld.service</td>
+<td>开启防火墙</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="4-7-其他命令"   >
+          <a href="#4-7-其他命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-7-其他命令" class="headerlink" title="4.7 其他命令"></a>4.7 其他命令</h3>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>su -</td>
+<td>切换到root权限（与su有区别）</td>
+</tr>
+<tr>
+<td>su 用户名</td>
+<td>切换到指定用户下,普通用户不需要输入密码</td>
+</tr>
+<tr>
+<td>exit(Ctrl+D)</td>
+<td>退出当前登录用户</td>
+</tr>
+<tr>
+<td>shutdown -h now</td>
+<td>关机(poweroff)</td>
+</tr>
+<tr>
+<td>shutdown -r now</td>
+<td>重启(reboot)</td>
+</tr>
+<tr>
+<td>top</td>
+<td>罗列使用CPU资源最多的linux任务 （输入q退出）</td>
+</tr>
+<tr>
+<td>man ping</td>
+<td>查看参考手册（例如ping 命令）</td>
+</tr>
+<tr>
+<td>ping –help</td>
+<td>查看参考手册（例如ping 命令）同上作用类似</td>
+</tr>
+<tr>
+<td>help</td>
+<td>显示帮助</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>修改密码</td>
+</tr>
+<tr>
+<td>df -h</td>
+<td>显示磁盘的使用情况</td>
+</tr>
+<tr>
+<td>ps -ef</td>
+<td>查看所有正在运行的进程</td>
+</tr>
+<tr>
+<td>ps -u 用户名</td>
+<td>查看指定用户正在运行的进程</td>
+</tr>
+<tr>
+<td>kill pid</td>
+<td>强制杀死进程      pid:进程号</td>
+</tr>
+<tr>
+<td>cal</td>
+<td>显示当前月历</td>
+</tr>
+<tr>
+<td>cal 10 1988</td>
+<td>显示指定月，年的月历</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>显示当前用户</td>
+</tr>
+<tr>
+<td>who</td>
+<td>显示登录用户</td>
+</tr>
+</tbody></table></div>
+
+        <h2 id="第五章-VI和VIM的使用"   >
+          <a href="#第五章-VI和VIM的使用" class="heading-link"><i class="fas fa-link"></i></a><a href="#第五章-VI和VIM的使用" class="headerlink" title="第五章 VI和VIM的使用"></a>第五章 VI和VIM的使用</h2>
+      
+        <h3 id="5-1-VI-x2F-VIM概述"   >
+          <a href="#5-1-VI-x2F-VIM概述" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-1-VI-x2F-VIM概述" class="headerlink" title="5.1 VI&#x2F;VIM概述"></a>5.1 VI&#x2F;VIM概述</h3>
+      <p>所有的 Unix Like 系统都会内建 vi 文书编辑器，其他的文书编辑器则不一定会存在。<br>但是目前我们使用比较多的是 vim 编辑器。<br>vim 具有程序编辑的能力，可以主动的以字体颜色辨别语法的正确性，方便程序设计。<br>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。<br>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。<br>连 vim 的官方网站 (<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.vim.org/" >http://www.vim.org</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>) 自己也说 vim 是一个程序开发工具而不是文字处理软件。</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031751.png" alt="image-20210311134811396"></p>
+
+        <h3 id="5-2-VI-x2F-VIM的基本模式"   >
+          <a href="#5-2-VI-x2F-VIM的基本模式" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-2-VI-x2F-VIM的基本模式" class="headerlink" title="5.2 VI&#x2F;VIM的基本模式"></a>5.2 VI&#x2F;VIM的基本模式</h3>
+      <p>基本上 vi&#x2F;vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）。 这三种模式的作用分别是：</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031717.png" alt="image-20210311134950201"></p>
+
+        <h4 id="5-2-1-命令模式"   >
+          <a href="#5-2-1-命令模式" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-2-1-命令模式" class="headerlink" title="5.2.1 命令模式"></a>5.2.1 命令模式</h4>
+      <p>​		用户刚刚启动 vi&#x2F;vim，便进入了命令模式。<br/>        此状态下敲键盘会被Vim识别为命令，而非输入字符。比如我们按下i，并不会输入字符，i被当作一个命令。<br>​		以下是常用的几个命令：<br>​			i a o 切换到输入模式，以输入字符。<br>​			x 删除当前光标所在处的字符。<br>​			: 切换到底线命令模式，以在最底一行输入命令。<br>​		命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令。</p>
+
+        <h4 id="5-2-2-输入模式"   >
+          <a href="#5-2-2-输入模式" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-2-2-输入模式" class="headerlink" title="5.2.2 输入模式"></a>5.2.2 输入模式</h4>
+      <p>​		在命令模式下按下i a o就进入了输入模式。<br/>		在输入模式中，可以使用以下按键<br>​			字符按键以及Shift组合，输入字符<br>​			ENTER，回车键，换行<br>​			BACK SPACE，退格键，删除光标前一个字符<br>​			DEL，删除键，删除光标后一个字符<br>​			方向键，在文本中移动光标<br>​			HOME&#x2F;END，移动光标到行首&#x2F;行尾<br>​			Page Up&#x2F;Page Down，上&#x2F;下翻页<br>​			Insert，切换光标为输入&#x2F;替换模式，光标将变成竖线&#x2F;下划线<br>​			<strong>ESC，退出输入模式，切换到命令模式</strong></p>
+
+        <h4 id="5-2-3-底线命令模式"   >
+          <a href="#5-2-3-底线命令模式" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-2-3-底线命令模式" class="headerlink" title="5.2.3 底线命令模式"></a>5.2.3 底线命令模式</h4>
+      <p>​		在命令模式下按下:（英文冒号）就进入了底线命令模式。<br/>		底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。<br>​		在底线命令模式中，基本的命令有（已经省略了冒号）：<br>​			q 退出程序<br>​			w 保存文件<br>​			wq 退出保存<br>​			q!强制退出</p>
+
+        <h2 id="第六章-安装Java-JDK"   >
+          <a href="#第六章-安装Java-JDK" class="heading-link"><i class="fas fa-link"></i></a><a href="#第六章-安装Java-JDK" class="headerlink" title="第六章 安装Java JDK"></a>第六章 安装Java JDK</h2>
+      
+        <h3 id="6-1-查看是否存在Java"   >
+          <a href="#6-1-查看是否存在Java" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-1-查看是否存在Java" class="headerlink" title="6.1 查看是否存在Java"></a>6.1 查看是否存在Java</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="6-2-删除Java-JDK"   >
+          <a href="#6-2-删除Java-JDK" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-2-删除Java-JDK" class="headerlink" title="6.2 删除Java JDK"></a>6.2 删除Java JDK</h3>
+      
+        <h3 id="6-3-官网上下载Linux-Java-JDK"   >
+          <a href="#6-3-官网上下载Linux-Java-JDK" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-3-官网上下载Linux-Java-JDK" class="headerlink" title="6.3 官网上下载Linux Java JDK"></a>6.3 官网上下载Linux Java JDK</h3>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031267.png" alt="image-20210310172727386"></p>
+
+        <h3 id="6-4-通过ftp上传到Linux"   >
+          <a href="#6-4-通过ftp上传到Linux" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-4-通过ftp上传到Linux" class="headerlink" title="6.4 通过ftp上传到Linux"></a>6.4 通过ftp上传到Linux</h3>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031642.png" alt="image-20210310172344191"></p>
+
+        <h3 id="6-5-解压到指定文件夹"   >
+          <a href="#6-5-解压到指定文件夹" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-5-解压到指定文件夹" class="headerlink" title="6.5 解压到指定文件夹"></a>6.5 解压到指定文件夹</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##解压缩到当前文件夹</span><br><span class="line">tar -zxvf jdk-8u281-linux-x64.tar.gz</span><br><span class="line">##删除压缩包</span><br><span class="line">rm -rf jdk-8u281-linux-x64.tar.gz</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="6-6-配置环境变量"   >
+          <a href="#6-6-配置环境变量" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-6-配置环境变量" class="headerlink" title="6.6 配置环境变量"></a>6.6 配置环境变量</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">##文件最底部引入以下内容，注意具体路径</span><br><span class="line">export JAVA_HOME=/dailyblue/soft/java/jdk1.8.0_281</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="6-7-刷新文件并测试"   >
+          <a href="#6-7-刷新文件并测试" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-7-刷新文件并测试" class="headerlink" title="6.7 刷新文件并测试"></a>6.7 刷新文件并测试</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="6-8-安装Tomcat（拓展知识）"   >
+          <a href="#6-8-安装Tomcat（拓展知识）" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-8-安装Tomcat（拓展知识）" class="headerlink" title="6.8 安装Tomcat（拓展知识）"></a>6.8 安装Tomcat（拓展知识）</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">上传</span><br><span class="line">解压</span><br><span class="line">配置环境变量</span><br><span class="line">export CATALINA_HOME=/opt/soft/tomcat/apache-tomcat-8.5.30</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib:$CATALINA_HOME/lib</span><br><span class="line">export PATH=$PATH:$CATALINA_HOME/bin</span><br><span class="line">刷新</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="第七章-用户和组"   >
+          <a href="#第七章-用户和组" class="heading-link"><i class="fas fa-link"></i></a><a href="#第七章-用户和组" class="headerlink" title="第七章 用户和组"></a>第七章 用户和组</h2>
+      <p>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。<br>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。<br>每个用户账号都拥有一个唯一的用户名和各自的口令。<br>用户在登录时键入正确的用户名和口令后，就能够进入系统和自己的主目录。</p>
+
+        <h3 id="7-1-用户标志符UID与GID"   >
+          <a href="#7-1-用户标志符UID与GID" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-1-用户标志符UID与GID" class="headerlink" title="7.1 用户标志符UID与GID"></a>7.1 用户标志符UID与GID</h3>
+      <p>​	我们登录Linux系统时通常运用用户名，但是Linux系统只识别一组号码，因此该号码与用户名之间存在对应关系，记录在&#x2F;etc&#x2F;passwd文件中，<strong>称呼这组号码为UID即用户在系统中的唯一验证符号</strong>，同样的用户组也有用户组名与用户组ID的对应关系也存放在&#x2F;etc&#x2F;group文件中，称为GID。<br>​    登录系统时系统会去查找这两个文件，只有找到相应的ID之后才会进入到记录密码的文件&#x2F;etc&#x2F;shadow中去核对密码是否正确，进而确认是否可以进入系统。</p>
+
+        <h4 id="7-1-1-详解用户配置文件-x2F-etc-x2F-passwd"   >
+          <a href="#7-1-1-详解用户配置文件-x2F-etc-x2F-passwd" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-1-1-详解用户配置文件-x2F-etc-x2F-passwd" class="headerlink" title="7.1.1 详解用户配置文件&#x2F;etc&#x2F;passwd"></a>7.1.1 详解用户配置文件&#x2F;etc&#x2F;passwd</h4>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031980.png" alt="image-20210312140335457"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031145.png" alt="image-20210312163110957"></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>代表用户名称，与UID对应</td>
+</tr>
+<tr>
+<td>2</td>
+<td>密码，但是&#x2F;etc&#x2F;passwd文件是所有用户都可以读取的<br/>为了安全，密码存放在&#x2F;etc&#x2F;shadow中，所以这里显示x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>UID这个就是用户标识符，<br/>Linux对UID的使用有以下限制：<br/>0用于系统管理员（root）；<br/>1-499保留给系统用户使用，是惯例，<br/>用于系统上启用的服务希望用较小的权限去执行而不是直接使用root权限，<br/>所以就得提供这些服务的所有者账号，这些账号通常不可登录；<br/>1-99:各版本自行创建的系统账号,100-499若用户有系统账号的需求时,可以使用的账号UID。<br/>500-65535的都是用户自建账号</td>
+</tr>
+<tr>
+<td>4</td>
+<td>GID这个是用户组标识符，用户组相关信息也有类似的文件存放在&#x2F;etc&#x2F;group文件中</td>
+</tr>
+<tr>
+<td>5</td>
+<td>用户信息说明列，没什么重要用途，用于说明账号的意义</td>
+</tr>
+<tr>
+<td>6</td>
+<td>主文件夹，默认的用户主文件夹在&#x2F;home&#x2F;IDname中</td>
+</tr>
+<tr>
+<td>7</td>
+<td>shell,当用户登录后就会取得一个Shell来与系统的内核通信<br/>以进行用户的操作任务，默认你shell会使用bash就是在这里指定的</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="7-1-2-详解账号密码文件-x2F-etc-x2F-shadow"   >
+          <a href="#7-1-2-详解账号密码文件-x2F-etc-x2F-shadow" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-1-2-详解账号密码文件-x2F-etc-x2F-shadow" class="headerlink" title="7.1.2 详解账号密码文件&#x2F;etc&#x2F;shadow"></a>7.1.2 详解账号密码文件&#x2F;etc&#x2F;shadow</h4>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031757.png" alt="image-20210312141208367"></p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031606.png" alt="image-20210312163252805"></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>用户账号，与密码对应</td>
+</tr>
+<tr>
+<td>2</td>
+<td>密码，经过编码加密之后的密码，只有root用户才可以读写</td>
+</tr>
+<tr>
+<td>3</td>
+<td>最近更改密码的日期，注意该日期是以格林尼治日期为起始点1，每过一天就累加1计算所得</td>
+</tr>
+<tr>
+<td>4</td>
+<td>密码不可被变更的天数，改密码最近一次被更改之后需要经过几天才可以被更改，如果是0的话，表示密码随时可以改动</td>
+</tr>
+<tr>
+<td>5</td>
+<td>密码需要重新更改的天数，经常更改密码是好习惯，该字段的含义是最近一次修改密码之后必须多少天之内再次更改密码，必须在该天数范围内重置密码，否则该账号的密码会变为过期特性</td>
+</tr>
+<tr>
+<td>6</td>
+<td>密码需要更改期限的警告天数，当账号的密码有效期限快要到的时候，系统将依据该字段给用户发出警告，提醒他密码再过多少天将要过期，尽快修改密码</td>
+</tr>
+<tr>
+<td>7</td>
+<td>密码过期后的宽限时间，密码过期后，在宽限时间内登录系统，系统会强制要求你必须要修改密码才可以登录使用系统，但是如果在该宽限时间内没有登录系统，没有修改密码，name密码将会失效，账号再也无法使用该密码登录了</td>
+</tr>
+<tr>
+<td>8</td>
+<td>账号失效日期，是指该账号在此字段规定的日期之后再也无法使用了</td>
+</tr>
+<tr>
+<td>9</td>
+<td>最后一个字段是保留字段，类似于备注</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="7-1-3-详解用户组配置文件-x2F-etc-x2F-group"   >
+          <a href="#7-1-3-详解用户组配置文件-x2F-etc-x2F-group" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-1-3-详解用户组配置文件-x2F-etc-x2F-group" class="headerlink" title="7.1.3 详解用户组配置文件&#x2F;etc&#x2F;group"></a>7.1.3 详解用户组配置文件&#x2F;etc&#x2F;group</h4>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031130.png" alt="image-20210312141738107"></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>用户所在的组的名称</td>
+</tr>
+<tr>
+<td>2</td>
+<td>密码位，一般不使用</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GID,用户组ID</td>
+</tr>
+<tr>
+<td>4</td>
+<td>属于该组的用户列表</td>
+</tr>
+</tbody></table></div>
+
+        <h4 id="7-1-4-详解用户组密码文件-x2F-etc-x2F-gshadow"   >
+          <a href="#7-1-4-详解用户组密码文件-x2F-etc-x2F-gshadow" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-1-4-详解用户组密码文件-x2F-etc-x2F-gshadow" class="headerlink" title="7.1.4 详解用户组密码文件&#x2F;etc&#x2F;gshadow"></a>7.1.4 详解用户组密码文件&#x2F;etc&#x2F;gshadow</h4>
+      <p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071031958.png" alt="image-20210312141945694"></p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>用户组名</td>
+</tr>
+<tr>
+<td>2</td>
+<td>密码列，开头为！表示无合法密码，所以无用户组管理员</td>
+</tr>
+<tr>
+<td>3</td>
+<td>用户组管理员账号</td>
+</tr>
+<tr>
+<td>4</td>
+<td>该用户组所属账号</td>
+</tr>
+</tbody></table></div>
+
+        <h3 id="7-2-用户的增删改"   >
+          <a href="#7-2-用户的增删改" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-2-用户的增删改" class="headerlink" title="7.2 用户的增删改"></a>7.2 用户的增删改</h3>
+      
+        <h4 id="7-2-1-用户的新增"   >
+          <a href="#7-2-1-用户的新增" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-2-1-用户的新增" class="headerlink" title="7.2.1 用户的新增"></a>7.2.1 用户的新增</h4>
+      <p>**useradd [-g 初始用户组] [-c说明栏] **  背！</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd [-u UID] [-g 初始用户组] [-G 次要用户组] [-m|M 强制创建用户主文件夹|强制不创建用户主文件夹] [-c说明栏] [-d 主文件夹绝对路径]  	</span><br><span class="line">[-s shell指定shell，未指定则设为/bin/bash] 用户账号名</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dailyblue dailyblue]# useradd -u 3000 -g input -m -c yigeceshi  user1</span><br><span class="line">创建了一个用户,用户名是user1,没有密码，uid是3000,组名是input,强制创建用户目录,因为没有指定-d,默认在/home下创建user1文件夹,说明文字是yigeceshi</span><br></pre></td></tr></table></div></figure>
+
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@dailyblue home]# useradd dailyblue</span><br><span class="line">创建了一个用户,用户名是dailyblue,没有密码，uid自增,组名是同uid,强制创建用户目录,因为没有指定-d,默认在/home下创建dailyblue文件夹</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032837.png" alt="image-20210312143357915"></p>
+<p>当我们执行创建用户操作时，系统会帮助我们修改相应的文件，添加一些信息：<br>    在&#x2F;etc&#x2F;passwd文件中创建一行数据，对应的记录账号的UID，GID，账号密码，主文件夹等信息；<br>    在&#x2F;etc&#x2F;shadow里面将账号密码的相关参数填入，但是尚未有密码；<br>    在&#x2F;etc&#x2F;group里面加入一个与账号名称一模一样的组名；<br>    在&#x2F;home目录下添加一个与账号同名的子目录作为用户主文件夹，且权限为700；-d情况下不会创建主目录；<br>注意：使用useradd -r 指令添加系统用户时不会创建用户的主文件夹，且用户与用户组的UID和GID都小于500；</p>
+
+        <h4 id="7-2-2-用户的修改"   >
+          <a href="#7-2-2-用户的修改" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-2-2-用户的修改" class="headerlink" title="7.2.2 用户的修改"></a>7.2.2 用户的修改</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#修改用户密码</span><br><span class="line">passwd 用户名</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032027.png" alt="image-20210312152150621"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#修改用户信息</span><br><span class="line">usermod [-cdegGlsuLU]  用户名</span><br><span class="line">-l:后面接账号名称，即是修改账号名称，/etc/passwd的第一列，usermod -l a b（b改为a）；</span><br><span class="line">-g:添加组 usermod -g sys tom；</span><br><span class="line">-G：后面接次要用户组；</span><br><span class="line">-c:后接账号说明，/etc/passwd的第五列，可以加入一些账号的说明；</span><br><span class="line">-L：暂时将用户的密码冻结，让其无法登录；</span><br><span class="line">-U：将/etc/shadow密码列的！去掉，也就是将账号密码冻结解除；</span><br><span class="line">-d:后面接账号的主文件夹，/etc/passwd文件的第六列；</span><br><span class="line">-e:后面接日期，/etc/shadow的第八个字段数据；</span><br><span class="line">-f:后面接天数，为shadow的第七个字段；</span><br><span class="line">-a:与-G组合使用增加次要用户组的支持而非设置；</span><br><span class="line">-s:后面接shell的实际文件；</span><br><span class="line">-u:后面接UID数字，即/etc/passwd第三列的数据；</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032196.png" alt="image-20210312154600933"></p>
+
+        <h4 id="7-2-3-用户的删除"   >
+          <a href="#7-2-3-用户的删除" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-2-3-用户的删除" class="headerlink" title="7.2.3 用户的删除"></a>7.2.3 用户的删除</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#这个指令就比较简单，顾名思义就是删除用户的相关数据：用户账号/密码相关参数：/etc/passwd,/etc/shadow;用#户组相关参数：/etc/group,/etc/gshadow;用户个人文件数</span><br><span class="line">#据：/home/username,/var/spool/mail/username…</span><br><span class="line">#-r 删除账号时同时删除目录（remove）</span><br><span class="line">userdel [-r] 用户名 </span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="7-3-用户组的增删改"   >
+          <a href="#7-3-用户组的增删改" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-3-用户组的增删改" class="headerlink" title="7.3 用户组的增删改"></a>7.3 用户组的增删改</h3>
+      <p>基本组（私有组）——伴随着用户创建而创建 与用户同名（也可以自己设置） 但创建一个用户的时候必有其组</p>
+<p>附加组（公有组）——直接创建空组，可以添加已有的用户，给组设置权限，该组中所有用户都具备此权限</p>
+
+        <h4 id="7-3-1-用户组的添加"   >
+          <a href="#7-3-1-用户组的添加" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-3-1-用户组的添加" class="headerlink" title="7.3.1 用户组的添加"></a>7.3.1 用户组的添加</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd [-g] [-r] 用户名 </span><br><span class="line">-g:设置当前组编号；</span><br><span class="line">-r:新建系统用户组，与/etc/login.defs内的GID_MIN有关，不建议使用</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032337.png" alt="image-20210312155133871"></p>
+
+        <h4 id="7-3-2-用户组的修改"   >
+          <a href="#7-3-2-用户组的修改" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-3-2-用户组的修改" class="headerlink" title="7.3.2 用户组的修改"></a>7.3.2 用户组的修改</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">groupmod [-g gid] [-n group_name] 用户组名</span><br><span class="line">-g:修改既有的GID数字</span><br><span class="line">-n:修改既有的组名；</span><br><span class="line">例如：</span><br><span class="line">#修改xiaozu1的组名是xiaozu2,新的GID是4444</span><br><span class="line">groupmod -g 4444 -n xiaozu2 xiaozu1</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="7-3-3-用户组的删除"   >
+          <a href="#7-3-3-用户组的删除" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-3-3-用户组的删除" class="headerlink" title="7.3.3 用户组的删除"></a>7.3.3 用户组的删除</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 只有某个用户组不是用户的初始用户组时才能被删除，也就是说要删除某个用户组，必须确认/etc/passwd内的账号没# 有任何人使用用户组作为初始用户组。</span><br><span class="line">groupdel 用户组名</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="第八章-权限管理"   >
+          <a href="#第八章-权限管理" class="heading-link"><i class="fas fa-link"></i></a><a href="#第八章-权限管理" class="headerlink" title="第八章 权限管理"></a>第八章 权限管理</h2>
+      <p>访问权限<br>读取 r：允许查看文件内容、显示目录列表。<br>写入 w：允许修改文件内容，允许在目录中新建、移动、删除文件或子目录。<br>可执行 x：允许运行程序、切换目录。<br>归属<br>属主：拥有该文件或目录的用户账号。<br>属组：拥有该文件或目录的组账号。</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032913.png" alt="image-20210312163914789"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">以demo.tar.gz为例</span><br><span class="line">[root@dailyblue test]# ls -l demo.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root 126 3月  10 16:20 demo.tar.gz</span><br><span class="line">-开头代表普通文件（文件类型：d 目录，- 普通文件，l 链接文件）</span><br><span class="line">文件所有者rw权限 具备读写权限</span><br><span class="line">文件所属组r权限 具备读权限</span><br><span class="line">其他用户r权限 具备读权限</span><br><span class="line">所属用户root</span><br><span class="line">所属组root</span><br><span class="line">文件字节大小 126</span><br><span class="line">创建时间  3月10日 16:20</span><br><span class="line">文件名 demo.tar.gz</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="8-1-更改操作权限"   >
+          <a href="#8-1-更改操作权限" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-1-更改操作权限" class="headerlink" title="8.1 更改操作权限"></a>8.1 更改操作权限</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod修改文件权限命令（change mode）</span><br><span class="line">	参数：-R 下面的文件和子目录做相同权限操作（Recursive递归的）</span><br><span class="line">例如：chmod u+x /dailyblue/test/demo.tar.gz	#给demo.tar.gz文件所属用户添加x权限</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032469.png" alt="image-20210312170809441"></p>
+
+        <h3 id="8-2-操作权限各项含义"   >
+          <a href="#8-2-操作权限各项含义" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-2-操作权限各项含义" class="headerlink" title="8.2 操作权限各项含义"></a>8.2 操作权限各项含义</h3>
+      <ul>
+<li>操作对象可以是下述字母中的任一个或者它们的组合：<br>u 表示“用户（user）”，即文件或目录的所有者。　　<br>g 表示“同组（group）用户”，即与文件属主有相同组ID的所有用户。　　<br>o 表示“其他（others）用户”。　　<br>a 表示“所有（all）用户”。它是系统默认值。　　</li>
+<li>操作符号可以是：<br>+添加某个权限。<br>-取消某个权限。　　<br>&#x3D;赋予给定权限并取消其他所有权限（如果有的话）。　　</li>
+<li>设置mode所表示的权限可用下述字母的任意组合：　　<br>r 可读。　　<br>w 可写。　　<br>x 可执行。　　<br>u 与文件属主拥有一样的权限。<br>g 与和文件属主同组的用户拥有一样的权限。<br>o 与其他用户拥有一样的权限。</li>
+<li>文件名：以空格分开的要改变权限的文件列表，支持通配符。</li>
+</ul>
+
+        <h3 id="8-3-chown命令"   >
+          <a href="#8-3-chown命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-3-chown命令" class="headerlink" title="8.3 chown命令"></a>8.3 chown命令</h3>
+      
+        <h4 id="8-3-1-chown概述"   >
+          <a href="#8-3-1-chown概述" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-3-1-chown概述" class="headerlink" title="8.3.1 chown概述"></a>8.3.1 chown概述</h4>
+      <p>​		更改某个文件或目录的属主和属组。</p>
+
+        <h4 id="8-3-2-chown语法"   >
+          <a href="#8-3-2-chown语法" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-3-2-chown语法" class="headerlink" title="8.3.2 chown语法"></a>8.3.2 chown语法</h4>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chown ［选项］ 用户或组 文件　　</span><br><span class="line">	- R 递归式地改变指定目录及其下的所有子目录和文件的拥有者。　　</span><br><span class="line">	- v 显示chown命令所做的工作。</span><br></pre></td></tr></table></div></figure>
+
+<p>案例1：</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032285.png" alt="image-20210312173226552"></p>
+<p>案例2：</p>
+<p><img src="https://gitee.com/who-is-on-the-riverside/cloud-note/raw/master/202210071032448.png" alt="image-20210312173410772"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://www.yanggroup.cn">小宇</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://www.yanggroup.cn/2022/10/07/Linux%E5%9F%BA%E7%A1%80/">https://www.yanggroup.cn/2022/10/07/Linux%E5%9F%BA%E7%A1%80/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2022/09/26/0819-0820%20%E6%AF%8F%E6%97%A5%E6%80%BB%E7%BB%93%EF%BC%88IO%E6%B5%81%EF%BC%89/"><span class="paginator-prev__text">IO流</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-Linux%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">
+          第一章 Linux概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Linux%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">
+          1.1 Linux的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Linux%E5%92%8CWindow%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">
+          1.2 Linux和Window的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Linux%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">
+          第二章 Linux安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">
+          2.1 了解什么是虚拟化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-windows%E5%AE%89%E8%A3%85VMware"><span class="toc-number">2.2.</span> <span class="toc-text">
+          2.2 windows安装VMware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%8E%8C%E6%8F%A1VMware%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">
+          2.3 掌握VMware网络配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%8E%8C%E6%8F%A1VMware%E5%AE%89%E8%A3%85CentOS7"><span class="toc-number">2.4.</span> <span class="toc-text">
+          2.4 掌握VMware安装CentOS7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E8%AE%BE%E7%BD%AECentos7%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%BA%90-%E5%8F%AF%E4%B8%8D%E5%81%9A"><span class="toc-number">2.5.</span> <span class="toc-text">
+          2.5 设置Centos7的下载源(可不做)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">2.5.1.</span> <span class="toc-text">
+          2.5.1 配置清华大学数据源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E9%85%8D%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-number">2.5.2.</span> <span class="toc-text">
+          2.5.2 配置阿里云数据源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E5%AE%89%E8%A3%85SSH%E5%B7%A5%E5%85%B7-XShell-6"><span class="toc-number">2.6.</span> <span class="toc-text">
+          2.6 安装SSH工具 XShell 6</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-1-%E5%AE%89%E8%A3%85XShell-6"><span class="toc-number">2.6.1.</span> <span class="toc-text">
+          2.6.1 安装XShell 6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8BLinux"><span class="toc-number">2.6.2.</span> <span class="toc-text">
+          2.6.2 连接远程Linux</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-Linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">
+          第三章 Linux的目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">
+          第四章 Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text">
+          4.1 文件与目录操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">4.2.</span> <span class="toc-text">
+          4.2 查看文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">
+          4.3 文本内容处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">4.4.</span> <span class="toc-text">
+          4.4 查询操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">4.5.</span> <span class="toc-text">
+          4.5 压缩和解压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">4.6.</span> <span class="toc-text">
+          4.6 网络相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">4.7.</span> <span class="toc-text">
+          4.7 其他命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-VI%E5%92%8CVIM%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">
+          第五章 VI和VIM的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-VI-x2F-VIM%E6%A6%82%E8%BF%B0"><span class="toc-number">5.1.</span> <span class="toc-text">
+          5.1 VI&#x2F;VIM概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-VI-x2F-VIM%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">
+          5.2 VI&#x2F;VIM的基本模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.1.</span> <span class="toc-text">
+          5.2.1 命令模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.2.</span> <span class="toc-text">
+          5.2.2 输入模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-3-%E5%BA%95%E7%BA%BF%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.3.</span> <span class="toc-text">
+          5.2.3 底线命令模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%AE%89%E8%A3%85Java-JDK"><span class="toc-number">6.</span> <span class="toc-text">
+          第六章 安装Java JDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8Java"><span class="toc-number">6.1.</span> <span class="toc-text">
+          6.1 查看是否存在Java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%88%A0%E9%99%A4Java-JDK"><span class="toc-number">6.2.</span> <span class="toc-text">
+          6.2 删除Java JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%AE%98%E7%BD%91%E4%B8%8A%E4%B8%8B%E8%BD%BDLinux-Java-JDK"><span class="toc-number">6.3.</span> <span class="toc-text">
+          6.3 官网上下载Linux Java JDK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E9%80%9A%E8%BF%87ftp%E4%B8%8A%E4%BC%A0%E5%88%B0Linux"><span class="toc-number">6.4.</span> <span class="toc-text">
+          6.4 通过ftp上传到Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E8%A7%A3%E5%8E%8B%E5%88%B0%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">6.5.</span> <span class="toc-text">
+          6.5 解压到指定文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">6.6.</span> <span class="toc-text">
+          6.6 配置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-7-%E5%88%B7%E6%96%B0%E6%96%87%E4%BB%B6%E5%B9%B6%E6%B5%8B%E8%AF%95"><span class="toc-number">6.7.</span> <span class="toc-text">
+          6.7 刷新文件并测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-8-%E5%AE%89%E8%A3%85Tomcat%EF%BC%88%E6%8B%93%E5%B1%95%E7%9F%A5%E8%AF%86%EF%BC%89"><span class="toc-number">6.8.</span> <span class="toc-text">
+          6.8 安装Tomcat（拓展知识）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-number">7.</span> <span class="toc-text">
+          第七章 用户和组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%94%A8%E6%88%B7%E6%A0%87%E5%BF%97%E7%AC%A6UID%E4%B8%8EGID"><span class="toc-number">7.1.</span> <span class="toc-text">
+          7.1 用户标志符UID与GID</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-1-%E8%AF%A6%E8%A7%A3%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-x2F-etc-x2F-passwd"><span class="toc-number">7.1.1.</span> <span class="toc-text">
+          7.1.1 详解用户配置文件&#x2F;etc&#x2F;passwd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-2-%E8%AF%A6%E8%A7%A3%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E6%96%87%E4%BB%B6-x2F-etc-x2F-shadow"><span class="toc-number">7.1.2.</span> <span class="toc-text">
+          7.1.2 详解账号密码文件&#x2F;etc&#x2F;shadow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-3-%E8%AF%A6%E8%A7%A3%E7%94%A8%E6%88%B7%E7%BB%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-x2F-etc-x2F-group"><span class="toc-number">7.1.3.</span> <span class="toc-text">
+          7.1.3 详解用户组配置文件&#x2F;etc&#x2F;group</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-4-%E8%AF%A6%E8%A7%A3%E7%94%A8%E6%88%B7%E7%BB%84%E5%AF%86%E7%A0%81%E6%96%87%E4%BB%B6-x2F-etc-x2F-gshadow"><span class="toc-number">7.1.4.</span> <span class="toc-text">
+          7.1.4 详解用户组密码文件&#x2F;etc&#x2F;gshadow</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%94%A8%E6%88%B7%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="toc-number">7.2.</span> <span class="toc-text">
+          7.2 用户的增删改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-1-%E7%94%A8%E6%88%B7%E7%9A%84%E6%96%B0%E5%A2%9E"><span class="toc-number">7.2.1.</span> <span class="toc-text">
+          7.2.1 用户的新增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-2-%E7%94%A8%E6%88%B7%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">7.2.2.</span> <span class="toc-text">
+          7.2.2 用户的修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-3-%E7%94%A8%E6%88%B7%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">7.2.3.</span> <span class="toc-text">
+          7.2.3 用户的删除</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E5%A2%9E%E5%88%A0%E6%94%B9"><span class="toc-number">7.3.</span> <span class="toc-text">
+          7.3 用户组的增删改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-1-%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E6%B7%BB%E5%8A%A0"><span class="toc-number">7.3.1.</span> <span class="toc-text">
+          7.3.1 用户组的添加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-2-%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">7.3.2.</span> <span class="toc-text">
+          7.3.2 用户组的修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-3-%E7%94%A8%E6%88%B7%E7%BB%84%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">7.3.3.</span> <span class="toc-text">
+          7.3.3 用户组的删除</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">
+          第八章 权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E6%9B%B4%E6%94%B9%E6%93%8D%E4%BD%9C%E6%9D%83%E9%99%90"><span class="toc-number">8.1.</span> <span class="toc-text">
+          8.1 更改操作权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E6%93%8D%E4%BD%9C%E6%9D%83%E9%99%90%E5%90%84%E9%A1%B9%E5%90%AB%E4%B9%89"><span class="toc-number">8.2.</span> <span class="toc-text">
+          8.2 操作权限各项含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-chown%E5%91%BD%E4%BB%A4"><span class="toc-number">8.3.</span> <span class="toc-text">
+          8.3 chown命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-1-chown%E6%A6%82%E8%BF%B0"><span class="toc-number">8.3.1.</span> <span class="toc-text">
+          8.3.1 chown概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-2-chown%E8%AF%AD%E6%B3%95"><span class="toc-number">8.3.2.</span> <span class="toc-text">
+          8.3.2 chown语法</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/11_Chameleon.png" alt="avatar"></div><p class="sidebar-ov-author__text">小宇</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Undersea-Moon" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://gitee.com/Undersea_Moon" target="_blank" rel="noopener" data-popover="social.gitee" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">G</span></a><a class="sidebar-ov-social-item" href="https://gitlab.com/Undersea-Moon" target="_blank" rel="noopener" data-popover="social.gitlab" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-gitlab"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=798382184" target="_blank" rel="noopener" data-popover="social.QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span><a href="https://github.com/Undersea-Moon" rel="noopener" target="_blank">© 小宇</a></span></div><div>Hosted by<a href="https://github.com/Undersea-Moon/myblog" rel="noopener" target="_blank">Github</a></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script></body></html>
